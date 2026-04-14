@@ -1,4 +1,18 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 export default function NavBar() {
+  const pathname = usePathname();
+
+  const getLinkClass = (path) => {
+    if (pathname === path) {
+      return "text-emerald-700 font-bold border-b-2 border-emerald-600 pb-1 transition-colors";
+    }
+    return "text-slate-600 font-medium hover:text-emerald-600 transition-colors";
+  };
+
   return (
     <>
       <header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm h-16 flex justify-between items-center px-8 max-w-full">
@@ -6,9 +20,9 @@ export default function NavBar() {
           <span className="text-xl font-bold text-emerald-900 tracking-tight">NutriGuide AI</span>
         </div>
         <nav className="hidden md:flex gap-8 items-center h-full">
-          <a className="text-slate-600 font-medium hover:text-emerald-600 transition-colors" href="#">Dashboard</a>
-          <a className="text-slate-600 font-medium hover:text-emerald-600 transition-colors" href="#">Meal Plans</a>
-          <a className="text-emerald-700 font-bold border-b-2 border-emerald-600 pb-1 transition-colors" href="#">Wellness Hub</a>
+          <Link className={getLinkClass("/")} href="/">Dashboard</Link>
+          <Link className={getLinkClass("/meal-plans")} href="/meal-plans">Meal Plans</Link>
+          <Link className={getLinkClass("/wellness-hub")} href="/wellness-hub">Wellness Hub</Link>
         </nav>
         <div className="flex items-center gap-4">
           <button className="p-2 text-slate-600 hover:bg-slate-100 rounded-full transition-all">
@@ -20,22 +34,18 @@ export default function NavBar() {
         </div>
       </header>
       <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 lg:hidden bg-surface/90 backdrop-blur-xl border-t border-emerald-100/10 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50">
-        <div className="flex flex-col items-center justify-center bg-emerald-100 text-emerald-900 rounded-xl px-4 py-1">
-          <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>forum</span>
+        <Link href="/" className="flex flex-col items-center justify-center px-4 py-1 hover:text-emerald-700 transition-colors">
+          <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === "/" ? "'FILL' 1" : "'FILL' 0" }}>forum</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Assistant</span>
-        </div>
-        <div className="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
-          <span className="material-symbols-outlined">menu_book</span>
-          <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Journal</span>
-        </div>
-        <div className="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
-          <span className="material-symbols-outlined">calendar_today</span>
+        </Link>
+        <Link href="/meal-plans" className="flex flex-col items-center justify-center px-4 py-1 hover:text-emerald-700 transition-colors">
+          <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === "/meal-plans" ? "'FILL' 1" : "'FILL' 0" }}>calendar_today</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Plan</span>
-        </div>
-        <div className="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
-          <span className="material-symbols-outlined">person</span>
-          <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
-        </div>
+        </Link>
+        <Link href="/wellness-hub" className="flex flex-col items-center justify-center px-4 py-1 hover:text-emerald-700 transition-colors">
+          <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === "/wellness-hub" ? "'FILL' 1" : "'FILL' 0" }}>menu_book</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Hub</span>
+        </Link>
       </nav>
     </>
   );
