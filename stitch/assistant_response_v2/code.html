@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NutriGuide AI - Recipe Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f2f3ff",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "secondary": "#376850",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-secondary-container": "#3c6c54",
+                        "inverse-primary": "#4edea3",
+                        "on-secondary-fixed": "#002113",
+                        "on-secondary-fixed-variant": "#1e4f3a",
+                        "on-tertiary-fixed": "#2a1700",
+                        "background": "#faf8ff",
+                        "secondary-container": "#b7ebce",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e2e7ff",
+                        "primary-container": "#10b981",
+                        "outline": "#6c7a71",
+                        "on-surface-variant": "#3c4a42",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002113",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#283044",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#e29100",
+                        "surface-container-highest": "#dae2fd",
+                        "surface-container": "#eaedff",
+                        "secondary-fixed-dim": "#9ed2b5",
+                        "surface-variant": "#dae2fd",
+                        "secondary-fixed": "#baeed1",
+                        "primary-fixed": "#6ffbbe",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "surface-dim": "#d2d9f4",
+                        "on-tertiary-container": "#523200",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed-variant": "#005236",
+                        "surface": "#faf8ff",
+                        "on-background": "#131b2e",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "tertiary-fixed": "#ffddb8",
+                        "outline-variant": "#bbcabf",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-surface": "#131b2e",
+                        "tertiary": "#855300",
+                        "surface-tint": "#006c49",
+                        "primary": "#006c49",
+                        "on-primary-container": "#00422b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-transition { transition: background-color 0.3s ease; }
+    </style>
+</head>
+<body class="bg-[#f8fafc] text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm h-16 flex justify-between items-center px-8 max-w-full">
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold text-emerald-900 tracking-tight">NutriGuide AI</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="text-slate-600 font-medium hover:text-emerald-600 transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 font-medium hover:text-emerald-600 transition-colors" href="#">Meal Plans</a>
+<a class="text-emerald-700 font-bold border-b-2 border-emerald-600 pb-1 transition-colors" href="#">Wellness Hub</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-600 hover:bg-slate-100 rounded-full transition-all">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-slate-200 ring-2 ring-emerald-500/20">
+<img alt="User profile and settings" data-alt="close-up portrait of a professional man with a friendly expression in a brightly lit office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChWY0r5qYJZw82Bb5JvW9sjpeUqptqwPpr41favkXDbyQFjz5J45eBq_KrfIxk6a7KeD0brrju91OQuOZNVDbl9kilYiOxFITRcKtuxGkGF6ci5H_Ej5V-zcuZzQkiyTH7WAJG0iWYWjwiq0SVKsAGUSN1mS7WcjIW27TYeXAF2mvUK4T8Dzv8ltobrU5g20dwaeWh--LFEf7L2yOFnlnjVw2XOxVOM-364JtR-veHl0p4RYwX0y45SunxVc0kcLiUopSTT2uSRg"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-4 flex justify-center">
+<div class="w-full max-w-3xl">
+<!-- Back Action -->
+<button class="flex items-center gap-2 text-on-surface-variant mb-6 group hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span class="text-sm font-label uppercase tracking-widest font-bold">Back to Assistant</span>
+</button>
+<!-- Recipe Card -->
+<article class="bg-white rounded-xl shadow-md overflow-hidden ring-1 ring-black/5">
+<!-- AI Reasoning Hero -->
+<section class="bg-emerald-50 border-l-4 border-emerald-500 p-8">
+<div class="flex items-start gap-4">
+<div class="bg-emerald-500 text-white p-2 rounded-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-emerald-900 mb-2 font-headline tracking-tight">Why this fits your goal</h2>
+<p class="text-emerald-800 leading-relaxed font-body">
+                                This Mediterranean-inspired bowl is optimized for your <span class="font-bold">Muscle Recovery</span> goal. It provides a dense profile of bioavailable proteins and magnesium-rich greens to support tissue repair after your morning workout, while maintaining the caloric deficit you requested.
+                            </p>
+</div>
+</div>
+</section>
+<div class="p-8 space-y-8">
+<!-- Title and Metadata -->
+<header class="space-y-4">
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container-high px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-emerald-900">Breakfast</span>
+<span class="bg-surface-container-high px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-emerald-900">High Protein</span>
+<span class="bg-surface-container-high px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-emerald-900">Low Carb</span>
+</div>
+<h1 class="text-4xl font-extrabold text-on-background font-headline tracking-tight leading-tight">
+                            Smoked Salmon &amp; Quinoa Power Bowl
+                        </h1>
+</header>
+<!-- Main Recipe Image -->
+<div class="relative aspect-[16/9] w-full rounded-xl overflow-hidden">
+<img alt="Smoked Salmon &amp; Quinoa Power Bowl" class="object-cover w-full h-full" data-alt="vibrant gourmet breakfast bowl with smoked salmon slices, fresh avocado, poached egg, and microgreens on a white ceramic plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp2_1SiukdFlm21GPO15pJ9G9NFnsggIb_gEeCaLsYR-jRO19ecA--tpfMMCBz5vvMHlBqrwrrXuzRWSCPHb11_VV3AL_tOeOgrqgnkpJYpnGOaPIlb9Xq-QWy78hObZilBNZ701VhvUc3gnHbJCkHaliFc7wCeSWRMqfpqebXg_VhXOeO1CryoDkZZsd6s95mISBl-6fUOjVMsIJK65yWGynRw0qFQeHsqmHTBb8-HT10ZS7RU7FfQfRNzpDZ_UzIaLYe6P3hIA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute bottom-6 left-6 flex gap-6 text-white">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">schedule</span>
+<span class="text-sm font-bold tracking-tight">15 MINS</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">restaurant</span>
+<span class="text-sm font-bold tracking-tight">1 SERVING</span>
+</div>
+</div>
+</div>
+<!-- Visual Nutritional Breakdown -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4 py-6">
+<div class="bg-surface-container-low p-4 rounded-xl text-center">
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Calories</p>
+<p class="text-2xl font-bold text-on-surface">385</p>
+<div class="w-full bg-slate-200 h-1 mt-3 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full w-3/4"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl text-center">
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Protein</p>
+<p class="text-2xl font-bold text-on-surface">32g</p>
+<div class="w-full bg-slate-200 h-1 mt-3 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[85%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl text-center">
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Carbs</p>
+<p class="text-2xl font-bold text-on-surface">24g</p>
+<div class="w-full bg-slate-200 h-1 mt-3 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full w-1/3"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl text-center">
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Fat</p>
+<p class="text-2xl font-bold text-on-surface">18g</p>
+<div class="w-full bg-slate-200 h-1 mt-3 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-2/5"></div>
+</div>
+</div>
+</section>
+<!-- Ingredients and Method -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<!-- Ingredients List -->
+<div class="md:col-span-1">
+<h3 class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6">Ingredients</h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3 text-sm text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>
+<span>100g Smoked Salmon</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>
+<span>1/2 cup Cooked Quinoa</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>
+<span>1/2 Fresh Avocado</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>
+<span>Handful Baby Spinach</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>
+<span>1 Poached Egg</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>
+<span>Lemon &amp; Olive Oil</span>
+</li>
+</ul>
+</div>
+<!-- Method -->
+<div class="md:col-span-2">
+<h3 class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6">Preparation</h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<span class="text-primary font-bold text-lg font-headline">01</span>
+<p class="text-on-surface leading-relaxed text-sm">Base the bowl with a generous bed of fresh baby spinach and lukewarm cooked quinoa.</p>
+</div>
+<div class="flex gap-4">
+<span class="text-primary font-bold text-lg font-headline">02</span>
+<p class="text-on-surface leading-relaxed text-sm">Artfully arrange the smoked salmon slices and sliced avocado atop the base.</p>
+</div>
+<div class="flex gap-4">
+<span class="text-primary font-bold text-lg font-headline">03</span>
+<p class="text-on-surface leading-relaxed text-sm">Place the perfectly poached egg in the center. Drizzle with cold-pressed olive oil and a squeeze of fresh lemon.</p>
+</div>
+<div class="flex gap-4">
+<span class="text-primary font-bold text-lg font-headline">04</span>
+<p class="text-on-surface leading-relaxed text-sm">Season with a pinch of sea salt and cracked black pepper to taste.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<footer class="pt-8 flex flex-col sm:flex-row gap-4 border-t border-slate-100">
+<button class="flex-1 bg-gradient-to-br from-primary to-primary-container text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_add_on</span>
+                            Add to My Plan
+                        </button>
+<button class="flex-1 bg-secondary-container text-on-secondary-container font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-emerald-200 transition-all">
+<span class="material-symbols-outlined">shopping_cart</span>
+                            Create Shopping List
+                        </button>
+</footer>
+</div>
+</article>
+<!-- Bottom Floating Action for mobile feedback -->
+<div class="mt-8 text-center">
+<button class="text-emerald-700 text-sm font-bold uppercase tracking-widest flex items-center gap-2 mx-auto hover:underline">
+<span class="material-symbols-outlined">refresh</span>
+                    Regenerate Alternative
+                </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 lg:hidden bg-surface/90 backdrop-blur-xl border-t border-emerald-100/10 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50">
+<div class="flex flex-col items-center justify-center bg-emerald-100 text-emerald-900 rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forum</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Assistant</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Journal</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Plan</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Profile</span>
+</div>
+</nav>
+</body></html>

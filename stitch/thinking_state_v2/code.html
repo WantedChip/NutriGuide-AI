@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NutriGuide AI | Thinking State</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f2f3ff",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "secondary": "#376850",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-secondary-container": "#3c6c54",
+                    "inverse-primary": "#4edea3",
+                    "on-secondary-fixed": "#002113",
+                    "on-secondary-fixed-variant": "#1e4f3a",
+                    "on-tertiary-fixed": "#2a1700",
+                    "background": "#faf8ff",
+                    "secondary-container": "#b7ebce",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e2e7ff",
+                    "primary-container": "#10b981",
+                    "outline": "#6c7a71",
+                    "on-surface-variant": "#3c4a42",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002113",
+                    "error": "#ba1a1a",
+                    "inverse-surface": "#283044",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#e29100",
+                    "surface-container-highest": "#dae2fd",
+                    "surface-container": "#eaedff",
+                    "secondary-fixed-dim": "#9ed2b5",
+                    "surface-variant": "#dae2fd",
+                    "secondary-fixed": "#baeed1",
+                    "primary-fixed": "#6ffbbe",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-dim": "#d2d9f4",
+                    "on-tertiary-container": "#523200",
+                    "surface-bright": "#faf8ff",
+                    "on-primary-fixed-variant": "#005236",
+                    "surface": "#faf8ff",
+                    "on-background": "#131b2e",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "tertiary-fixed": "#ffddb8",
+                    "outline-variant": "#bbcabf",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-surface": "#131b2e",
+                    "tertiary": "#855300",
+                    "surface-tint": "#006c49",
+                    "primary": "#006c49",
+                    "on-primary-container": "#00422b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-transition {
+            background: linear-gradient(180deg, rgba(242, 243, 255, 1) 0%, rgba(250, 248, 255, 1) 100%);
+        }
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-body text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-8 h-16 max-w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-emerald-900 tracking-tight">NutriGuide AI</span>
+<div class="hidden md:flex gap-6">
+<a class="text-slate-600 font-medium hover:text-emerald-600 transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 font-medium hover:text-emerald-600 transition-colors" href="#">Meal Plans</a>
+<a class="text-emerald-700 font-bold border-b-2 border-emerald-600 pb-1" href="#">Wellness Hub</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-slate-600">dark_mode</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container/20 overflow-hidden">
+<img alt="User profile and settings" data-alt="professional headshot of a healthy young adult smiling, soft studio lighting, clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbr6hwWjlZhC01NPY5LH6BeB4RPCdBwwImMlUkMs-NFeesGd5agRdVCUE8SEgWAfpgT5fUN0lcW3QgbUg9LK13SuHsFMveWKyjJLn2mSyFgxxjmeYet0z3fmcZGYx3_KFmbutMSn1hnbpK6_Sys1VtsE-xZRC3Nxe40oh1L5WJh38Ub-7xjPCKB_UEgXB9b8P_JEQ-9VOS3ka5Tb9tnWqfmaMj5fT_KtyVAM2gXPybnMm-lAAU9refhEYddqYr7CuQ3BR0O7faBQ"/>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 px-4 md:px-8">
+<div class="max-w-3xl mx-auto space-y-8">
+<!-- Chat History Feed -->
+<div class="space-y-6">
+<!-- User Message -->
+<div class="flex justify-end">
+<div class="bg-emerald-700 text-white p-4 rounded-2xl rounded-tr-none max-w-[85%] shadow-sm">
+<p class="text-sm leading-relaxed">Can you suggest a high-protein dinner that's gluten-free and under 600 calories? I've got salmon and asparagus in the fridge.</p>
+</div>
+</div>
+<!-- AI Response Start -->
+<div class="flex justify-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-emerald-700 text-sm">auto_awesome</span>
+</div>
+<div class="bg-white border border-emerald-100/20 p-4 rounded-2xl rounded-tl-none max-w-[85%] shadow-sm">
+<p class="text-sm text-on-surface-variant leading-relaxed">Absolutely! Salmon and asparagus are a powerhouse combination. I'm tailoring a recipe to meet your protein goals while staying within your calorie limit.</p>
+</div>
+</div>
+</div>
+<!-- Thinking State: Skeleton Loader -->
+<div class="flex justify-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0 animate-pulse">
+<span class="material-symbols-outlined text-emerald-400 text-sm">psychology</span>
+</div>
+<div class="flex-1 space-y-6">
+<!-- Status Text Indicator -->
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<p class="text-xs font-label uppercase tracking-widest text-emerald-700 font-bold animate-pulse">Analyzing nutritional density...</p>
+</div>
+<!-- Staggered Recipe Skeleton Card -->
+<div class="bg-white rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 space-y-6">
+<!-- Card Header Skeleton -->
+<div class="flex justify-between items-start">
+<div class="space-y-2 flex-1">
+<div class="h-6 w-3/4 bg-slate-100 rounded-lg animate-pulse stagger-1"></div>
+<div class="h-4 w-1/2 bg-slate-50 rounded-lg animate-pulse stagger-2"></div>
+</div>
+<div class="h-10 w-10 bg-slate-100 rounded-full animate-pulse"></div>
+</div>
+<!-- Image Placeholder -->
+<div class="aspect-[16/9] w-full bg-slate-100 rounded-2xl animate-pulse stagger-1 overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-tr from-slate-100 via-white/20 to-slate-100"></div>
+</div>
+<!-- Info Grid Skeleton -->
+<div class="grid grid-cols-3 gap-4">
+<div class="h-12 bg-slate-50 rounded-xl animate-pulse stagger-2"></div>
+<div class="h-12 bg-slate-50 rounded-xl animate-pulse stagger-3"></div>
+<div class="h-12 bg-slate-50 rounded-xl animate-pulse stagger-1"></div>
+</div>
+<!-- Content Rows -->
+<div class="space-y-3">
+<div class="h-3 w-full bg-slate-100 rounded-full animate-pulse"></div>
+<div class="h-3 w-11/12 bg-slate-100 rounded-full animate-pulse stagger-2"></div>
+<div class="h-3 w-4/5 bg-slate-100 rounded-full animate-pulse stagger-3"></div>
+</div>
+<!-- Action Button Skeleton -->
+<div class="h-12 w-full bg-slate-100 rounded-xl animate-pulse"></div>
+</div>
+<!-- Secondary Status Text -->
+<p class="text-[10px] text-slate-400 font-label uppercase tracking-wider text-center italic">Cross-referencing with your dietary preferences</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 bg-surface/90 backdrop-blur-xl border-t border-emerald-100/10 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 rounded-t-2xl">
+<div class="flex flex-col items-center justify-center bg-emerald-100 text-emerald-900 rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forum</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Assistant</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Journal</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Plan</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-4 py-1">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+</div>
+</nav>
+<!-- Floating Prompt Anchor (Mimics active interaction) -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 hidden md:block">
+<div class="glass-panel border border-emerald-100/30 rounded-2xl p-2 flex items-center gap-2 shadow-xl">
+<div class="flex-1 px-4 py-2">
+<span class="text-slate-400 text-sm">Thinking...</span>
+</div>
+<button class="bg-slate-100 text-slate-400 h-10 w-10 rounded-xl flex items-center justify-center cursor-not-allowed">
+<span class="material-symbols-outlined">stop_circle</span>
+</button>
+</div>
+</div>
+</body></html>
