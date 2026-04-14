@@ -104,11 +104,11 @@ export default function RecipeCard({ recipe }) {
         </div>
         
         <footer className="pt-8 flex flex-col sm:flex-row gap-4 border-t border-slate-100">
-          <button className="flex-1 bg-gradient-to-br from-primary to-primary-container text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+          <button aria-label="Add recipe to meal plan" className="flex-1 bg-gradient-to-br from-primary to-primary-container text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 hover:opacity-90 transition-all">
             <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>calendar_add_on</span>
             Add to My Plan
           </button>
-          <button className="flex-1 bg-secondary-container text-on-secondary-container font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-emerald-200 transition-all">
+          <button aria-label="Create shopping list" className="flex-1 bg-secondary-container text-on-secondary-container font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-emerald-200 transition-all">
             <span className="material-symbols-outlined">shopping_cart</span>
             Create Shopping List
           </button>
@@ -116,7 +116,7 @@ export default function RecipeCard({ recipe }) {
       </div>
       
       <div className="mt-8 text-center pb-8">
-        <button className="text-emerald-700 text-sm font-bold uppercase tracking-widest flex items-center gap-2 mx-auto hover:underline">
+        <button aria-label="Regenerate alternative recipe" className="text-emerald-700 text-sm font-bold uppercase tracking-widest flex items-center gap-2 mx-auto hover:underline">
           <span className="material-symbols-outlined">refresh</span>
           Regenerate Alternative
         </button>

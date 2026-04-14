@@ -20,25 +20,25 @@ export default function NavBar() {
           <span className="text-xl font-bold text-emerald-900 tracking-tight">NutriGuide AI</span>
         </div>
         <nav className="hidden md:flex gap-8 items-center h-full">
-          <Link className={getLinkClass("/")} href="/">Dashboard</Link>
-          <Link className={getLinkClass("/meal-plans")} href="/meal-plans">Meal Plans</Link>
-          <Link className={getLinkClass("/wellness-hub")} href="/wellness-hub">Wellness Hub</Link>
+          <Link aria-label="Go to Dashboard" className={getLinkClass("/")} href="/">Dashboard</Link>
+          <Link aria-label="Go to Meal Plans" className={getLinkClass("/meal-plans")} href="/meal-plans">Meal Plans</Link>
+          <Link aria-label="Go to Wellness Hub" className={getLinkClass("/wellness-hub")} href="/wellness-hub">Wellness Hub</Link>
         </nav>
         <div className="flex items-center gap-4">
-          <button className="p-2 text-slate-600 hover:bg-slate-100 rounded-full transition-all">
+          <button aria-label="Toggle dark mode" className="p-2 text-slate-600 hover:bg-slate-100 rounded-full transition-all">
             <span className="material-symbols-outlined">dark_mode</span>
           </button>
           <div className="h-8 w-8 rounded-full overflow-hidden bg-slate-200 ring-2 ring-emerald-500/20">
-            <img alt="User profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChWY0r5qYJZw82Bb5JvW9sjpeUqptqwPpr41favkXDbyQFjz5J45eBq_KrfIxk6a7KeD0brrju91OQuOZNVDbl9kilYiOxFITRcKtuxGkGF6ci5H_Ej5V-zcuZzQkiyTH7WAJG0iWYWjwiq0SVKsAGUSN1mS7WcjIW27TYeXAF2mvUK4T8Dzv8ltobrU5g20dwaeWh--LFEf7L2yOFnlnjVw2XOxVOM-364JtR-veHl0p4RYwX0y45SunxVc0kcLiUopSTT2uSRg"/>
+            <img aria-label="User profile picture" alt="User profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChWY0r5qYJZw82Bb5JvW9sjpeUqptqwPpr41favkXDbyQFjz5J45eBq_KrfIxk6a7KeD0brrju91OQuOZNVDbl9kilYiOxFITRcKtuxGkGF6ci5H_Ej5V-zcuZzQkiyTH7WAJG0iWYWjwiq0SVKsAGUSN1mS7WcjIW27TYeXAF2mvUK4T8Dzv8ltobrU5g20dwaeWh--LFEf7L2yOFnlnjVw2XOxVOM-364JtR-veHl0p4RYwX0y45SunxVc0kcLiUopSTT2uSRg"/>
           </div>
         </div>
       </header>
       <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 lg:hidden bg-surface/90 backdrop-blur-xl border-t border-emerald-100/10 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50">
-        <Link href="/" className="flex flex-col items-center justify-center px-4 py-1 hover:text-emerald-700 transition-colors">
+        <Link aria-label="Go to Assistant" href="/" className="flex flex-col items-center justify-center px-4 py-1 hover:text-emerald-700 transition-colors">
           <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === "/" ? "'FILL' 1" : "'FILL' 0" }}>forum</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Assistant</span>
         </Link>
-        <Link href="/meal-plans" className="flex flex-col items-center justify-center px-4 py-1 hover:text-emerald-700 transition-colors">
+        <Link aria-label="Go to Plan" href="/meal-plans" className="flex flex-col items-center justify-center px-4 py-1 hover:text-emerald-700 transition-colors">
           <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === "/meal-plans" ? "'FILL' 1" : "'FILL' 0" }}>calendar_today</span>
           <span className="text-[10px] font-bold uppercase tracking-widest mt-1">Plan</span>
         </Link>

@@ -18,10 +18,11 @@ export default function ChatInput({ onSendMessage, isThinking }) {
       <form onSubmit={handleSubmit} className="relative group">
         <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-primary blur opacity-10 group-focus-within:opacity-20 transition duration-1000 group-hover:duration-200"></div>
         <div className="relative flex items-center bg-white border border-slate-100 rounded-2xl shadow-xl overflow-hidden focus-within:ring-2 ring-primary/20 transition-all">
-          <button type="button" className="pl-4 pr-2 text-slate-400 hover:text-primary transition-colors">
+          <button type="button" aria-label="Add attachment" className="pl-4 pr-2 text-slate-400 hover:text-primary transition-colors">
             <span className="material-symbols-outlined">add_circle</span>
           </button>
           <input 
+            aria-label="Type your message"
             value={value}
             onChange={(e) => setValue(e.target.value)}
             disabled={isThinking}
@@ -31,6 +32,7 @@ export default function ChatInput({ onSendMessage, isThinking }) {
           />
           <button 
             type="submit" 
+            aria-label="Send message"
             disabled={!value.trim() || isThinking}
             className={`mx-3 w-12 h-12 rounded-xl flex items-center justify-center shadow-lg transition-transform ${(!value.trim() || isThinking) ? 'bg-slate-200 text-slate-400 opacity-50 cursor-not-allowed' : 'bg-gradient-to-br from-primary to-primary-container text-white shadow-emerald-500/20 active:scale-95'}`}
           >
