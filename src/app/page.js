@@ -27,9 +27,26 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: text })
       });
-      const data = await res.json();
+      const aiData = await res.json();
       
-      setMessages((prev) => [...prev, { type: "recipe", recipe: data }]);
+      const mappedRecipe = {
+        reasoning: aiData.whyItFits || "",
+        tags: ["AI Generated", "Customized"],
+        title: aiData.recipeName || "Custom Recipe",
+        imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBp2_1SiukdFlm21GPO15pJ9G9NFnsggIb_gEeCaLsYR-jRO19ecA--tpfMMCBz5vvMHlBqrwrrXuzRWSCPHb11_VV3AL_tOeOgrqgnkpJYpnGOaPIlb9Xq-QWy78hObZilBNZ701VhvUc3gnHbJCkHaliFc7wCeSWRMqfpqebXg_VhXOeO1CryoDkZZsd6s95mISBl-6fUOjVMsIJK65yWGynRw0qFQeHsqmHTBb8-HT10ZS7RU7FfQfRNzpDZ_UzIaLYe6P3hIA",
+        time: parseInt(aiData.prepTime) || 15,
+        servings: 1,
+        nutrition: {
+          calories: typeof aiData.macros?.calories === 'string' ? aiData.macros.calories.replace(/\\D/g, '') : aiData.macros?.calories || 0,
+          protein: typeof aiData.macros?.protein === 'string' ? aiData.macros.protein.replace(/\\D/g, '') : aiData.macros?.protein || 0,
+          carbs: typeof aiData.macros?.carbs === 'string' ? aiData.macros.carbs.replace(/\\D/g, '') : aiData.macros?.carbs || 0,
+          fat: typeof aiData.macros?.fat === 'string' ? aiData.macros.fat.replace(/\\D/g, '') : aiData.macros?.fat || 0
+        },
+        ingredients: aiData.ingredients || [],
+        preparation: aiData.preparation || []
+      };
+      
+      setMessages((prev) => [...prev, { type: "recipe", recipe: mappedRecipe }]);
     } catch (error) {
       setMessages((prev) => [...prev, { type: "assistant_text", text: "Sorry, something went wrong processing your request." }]);
     } finally {
